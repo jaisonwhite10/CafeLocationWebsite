@@ -1,0 +1,139 @@
+{% include 'header.html' %}
+ <!-- Main Content -->
+<div class="container">
+    <div class="row d-flex align-items-stretch">
+        <div class="section-title">
+        <h2>WORK-FRIENDLY PLACES TO VISIT</h2>
+        <div class="d-inline pagination_badge">
+                <span class="badge rounded-pill text-bg-dark fs-6">
+                    {{ pagination.first }} - {{ pagination.last }} of {{ pagination.total }}
+                </span>
+        </div>
+        <div class="dropdown">
+          <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Filters
+          </button>
+            <div class="form-check">
+            {% for label in filter_labels %}
+            <ul class="list-group">
+            <form class="dropdown-menu" method="GET" action="{{ url_for('get_all_cafes') }}">
+            <li class="list-group-item">
+                <label class="form-check-label">
+                    <input type="checkbox" name="filter_list" value="{{ label }}" {% if label in filter_list %}
+                            checked
+                           {% endif %}>
+                    {{ label }}
+                </label>
+            </li>
+            {% endfor %}
+
+                <button class="btn btn-outline-success" type="submit">Apply Filters</button>
+
+            </ul>
+            </form>
+        </div>
+        </div>
+        <div class="row">
+        {% for cafe in pagination.items %}
+<!--        <div class="row d-flex align-items-stretch">-->
+
+<!--        <div class="card-deck">-->
+        <div class="col-lg-4 col-md-6">
+        <a href={{url_for('show_cafe',cafe_id=cafe.id)}} id="places" class="link-underline-light">
+          <div class="card places_card border-dark mb-3" style="width: 20rem; height: 42rem;">
+                <img src="{{cafe.img_url}}" class="img-fluid rounded-start" style="height: 250px;">
+              <div class="card-header">
+                  <h3 class="card-title">
+                    {{cafe.name}}
+                  </h3>
+                  <p class="card-subtitle">
+                    {{cafe.location}}
+                  </p>
+              </div>
+              <ul class="list-group list-group-flush">
+
+                  <li class="list-group-item">
+                      Has Toilets:
+                      {% if cafe.has_toilet == True: %}
+                      <i class="list-icon bi bi-check2" style="color: green;"></i>
+                      {% else: %}
+                      <i class="list-icon bi bi-x" style="color: red;"></i>
+                      {% endif %}
+                  </li>
+                  <li class="list-group-item">
+                      {{cafe.has_wifi}}
+                       Has Wifi:
+                      {% if cafe.has_wifi == True: %}
+                      <i class="list-icon bi bi-check2" style="color: green;"></i>
+                      {% else: %}
+                      <i class="list-icon bi bi-x" style="color: red;"></i>
+                      {% endif %}
+                  </li>
+                  <li class="list-group-item">
+                      Has Sockets:
+                      {% if cafe.has_sockets == True: %}
+                      <i class="list-icon bi bi-check2" style="color: green;"></i>
+                      {% else: %}
+                      <i class="list-icon bi bi-x" style="color: red;"></i>
+                      {% endif %}
+                  </li>
+                  <li class="list-group-item">
+                      Can Take Calls:
+                      {% if cafe.can_take_calls == True: %}
+                      <i class="list-icon bi bi-check2" style="color: green;"></i>
+                      {% else: %}
+                      <i class="list-icon bi bi-x" style="color: red;"></i>
+                      {% endif %}
+                  </li>
+              </ul>
+          </div>
+        </a>
+        </div>
+
+        {% endfor %}
+        </div>
+        </div>
+        </div>
+        <nav aria-label="Page">
+            <ul class="pagination justify-content-center">
+            {% if pagination.has_prev %}
+                <li class="page-item">
+                    <a class='page-link page-number' href="{{ url_for('get_all_cafes', page=pagination.prev_num) }}">
+                        {{ '<<<' }}
+                    </a>
+                </li>
+            {% endif %}
+
+            {% for number in pagination.iter_pages() %}
+                {% if pagination.page != number: %}
+                    <li class="page-item">
+                            <a class=' page-link page-number'
+                                href="{{ url_for('get_all_cafes', page=number) }}">
+                            {{ number }}
+                            </a>
+                    </li>
+                {% else: %}
+                    <li class='page-item active current-page-number'>
+                        <a class='page-link page-number'
+                                href="{{ url_for('get_all_cafes', page=number) }}">
+                            {{ number }}
+                        </a>
+
+                    </li>
+                {% endif %}
+            {% endfor %}
+
+            {% if pagination.has_next %}
+                <li class="page-item">
+                    <a class='page-link page-number'
+                        href="{{ url_for('get_all_cafes', page=pagination.next_num) }}">
+                        {{ '>>>' }}
+                    </a>
+                </li>
+            {% endif %}
+            </ul>
+        </nav>
+
+    </div>
+</div>
+{% include 'footer.html' %}

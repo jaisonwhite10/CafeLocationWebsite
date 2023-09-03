@@ -1,0 +1,115 @@
+/*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
+html, body {
+   margin:0;
+   padding:0;
+   height:100%;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  color: #444444;
+  position: relative;
+  min-height: 100%;
+  min-height: 100vh;
+}
+
+.border-left {
+  border-left: 1px solid black; padding-left: 100px;
+}
+
+.pagination_badge {right: 0;}
+/*--------------------------------------------------------------
+# Navbar
+--------------------------------------------------------------*/
+.nav-icon {padding-right: 5px;}
+
+
+/*--------------------------------------------------------------
+#Searchbar
+--------------------------------------------------------------*/
+/*.searchbar {width: 400px; position: absolute; right:0;}
+
+
+
+/*--------------------------------------------------------------
+#Filters
+--------------------------------------------------------------*/
+.btn-filters {margin-top: 30px;}
+
+
+.section-title{ text-align: center;}
+
+.dropdown {position: absolute; right:0; margin-top: 0px;}
+/*--------------------------------------------------------------
+# Places Card
+--------------------------------------------------------------*/
+.places_card {margin-top: 70px;}
+.list-group {padding-top: 10px;}
+.list-icon {text-align: end; padding-left: 250px; font-size: 25px; vertical-align: middle; line-height: 30px;}
+.page-link {color: green}
+.pagination {--bs-pagination-active-bg: #198754;
+    --bs-pagination-active-border-color: #198754}
+/*--------------------------------------------------------------
+# Comments
+--------------------------------------------------------------*/
+
+.comment {margin-top: 20px;}
+
+.commentList {
+    padding: 0;
+    list-style:none;
+    max-height:200px;
+    overflow:auto;
+    margin-top: 20px;
+}
+
+.commentList li {
+    margin:0;
+    margin-top:10px;
+}
+
+.commentList li > div {
+    display:table-cell;
+}
+
+.commenterImage {
+    width:30px;
+    margin-right:5px;
+    height:100%;
+    float:left;
+}
+.commenterImage img {
+    width:100%;
+    border-radius:50%;
+}
+.commentText p {
+    margin:0;
+}
+
+.commentBox {
+    padding:10px;
+    border-top:1px dotted #bbb;
+}
+.commentBox .form-group:first-child, .actionBox .form-group:first-child {
+    width:80%;
+}
+
+.commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {
+    width:18%;
+}
+
+.comment_author{padding-bottom: 10px;}
+
+.comment_btn {padding-top: 50px;}
+/*--------------------------------------------------------------
+# Footer
+--------------------------------------------------------------*/
+#footer {
+
+  padding: 30px 0;
+  font-size: 20px;
+  text-align: center;
+
+}
